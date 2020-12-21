@@ -135,7 +135,7 @@ public class StudentExcelParser {
 
 			cell.setCellValue((Boolean) value);
 		} else if (value instanceof Date) {
-			System.out.println("Setting birth date "+value);
+			
 			cell.setCellValue((Date) value);
 		} else {
 			cell.setCellValue((String) value);
@@ -158,11 +158,11 @@ public class StudentExcelParser {
 		for (Student student : studentList) {
 			Row row = sheet.createRow(rowCount++);
 			int columnCount = 0;
-			System.out.println("Student:"+student);	
+			
 			createCell(row, columnCount++, student.getId(), style);
 			createCell(row, columnCount++, student.getFirstName(), style);
 			createCell(row, columnCount++, student.getLastName(), style);
-			System.out.println("Birth Date:"+student.getBirthDate());
+			
 			createCell(row, columnCount++, student.getBirthDate(), dateStyle);
 
 		}

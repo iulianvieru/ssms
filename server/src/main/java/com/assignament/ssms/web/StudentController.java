@@ -65,7 +65,7 @@ public class StudentController {
 	
 	@GetMapping("/students/{id}")
 	ResponseEntity<?> getGroup(@PathVariable Long id) {
-		System.out.println("Requested all data");
+		
 		Optional<Student> student = studentRepository.findById(id);
 		return student.map(response -> ResponseEntity.ok().body(response))
 				.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -118,13 +118,9 @@ public class StudentController {
 			RedirectAttributes redirectAttributes) {
 		StudentExcelParser excelParser= new StudentExcelParser(file);
 		studentRepository.saveAll(excelParser.getStudentList());
-		System.out.println("Uploading file "+file.getOriginalFilename());
+		
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
-//		Map<String,String> resposne=new HashMap<String,String>();
-//		resposne.put("message", "You successfully uploaded " + file.getOriginalFilename() + "!");
-//		resposne.put("studentsImported", String.valueOf(excelParser.getStudentList().size()));
-//		return ResponseEntity.ok().build(resposne);
 		return "redirect:/";
 	}
 }
